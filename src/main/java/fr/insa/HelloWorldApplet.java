@@ -1,4 +1,4 @@
-package fr.insa
+package fr.insa;
 
 import javacard.framework.*;
 
