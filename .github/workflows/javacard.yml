@@ -7,6 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
+
   build-and-test:
     runs-on: ubuntu-latest
 
@@ -44,3 +45,51 @@ jobs:
         run: |
           chmod +x scripts/run_tests.sh
           ./scripts/run_tests.sh
+
+  sast-semgrep:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep (SAST)
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/java
+
+  sca-trivy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy (SCA)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'CRITICAL,HIGH'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
