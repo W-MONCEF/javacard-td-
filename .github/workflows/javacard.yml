@@ -43,7 +43,7 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
       - name: Run Semgrep (SAST)
-        run: semgrep --config p/java --exclude tools/ --exclude lib/ src/
+        run: semgrep --config p/java
 
   sca-trivy:
     runs-on: ubuntu-latest
